@@ -38,7 +38,10 @@ public class UseEmployee{
 						Scanner scanObject = new Scanner(System.in);
 						System.out.println("Please insert the Employee Number: "); 
 						 int EmployeeNum = scanObject.nextInt();
-						System.out.println(solution.findByEmployeeNo(EmployeeNum)+" Employee Address ["+solution.findByEmployeeNo(EmployeeNum).getCity()+", "+solution.findByEmployeeNo(EmployeeNum).getState()+"]");
+						//System.out.println(solution.findByEmployeeNo(EmployeeNum)+" Employee Address ["+solution.findByEmployeeNo(EmployeeNum).getCity()+", "+solution.findByEmployeeNo(EmployeeNum).getState()+"]");
+					    //updated below output
+						 System.out.println(solution.findByEmployeeNo(EmployeeNum)+" "+solution.findByEmployeeNo(EmployeeNum).getEmployeeAddress());
+
 						 break;
 					case 4://Update employee
 						Scanner st = new Scanner(System.in);
@@ -119,8 +122,9 @@ public static void function1(EmployeeServiceImpl solution,int empNo,String empNa
 }
 
 public static void function2(EmployeeServiceImpl solution) {
-	System.out.println("Updated "+solution.findByEmployeeNo(1)+" "+" Address [ "+solution.findByEmployeeNo(1).getState()+" "+",  "+solution.findByEmployeeNo(1).getCity()+"]");
-    //System.out.println(solution.findByEmployeeNo(1).getEmployeeAddress().getCity());
+	//System.out.println("Updated "+solution.findByEmployeeNo(1));
+	System.out.println("Updated "+solution.findByEmployeeNo(1)+" "+" Address [ "+solution.findByEmployeeNo(1).getEmployeeAddress());
+    //System.out.println(solution.findByEmployeeNo(1).getEmployeeAddress());
     //System.out.println("updated State "+solution.findByEmployeeNo(1).getState());
 	//System.out.println("updated City "+solution.findByEmployeeNo(1).getCity());
 }

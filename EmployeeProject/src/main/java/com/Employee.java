@@ -1,16 +1,17 @@
 package com;
 
-public class Employee extends Address{
+public class Employee{
 
 	public int empNo;
 	public String empName;
 	public double salary;
 	public Address address;
+	
 	Employee(int empNo, String empName, double salary, Address address) {
 		// TODO Auto-generated constructor stub
-		super(address.getCity(), address.getState());
+		super();
 		//super(city, state);
-		this.address=address;
+		this.address = address;
 		this.empNo=empNo;
 		this.empName=empName;
 		this.salary=salary;
@@ -41,8 +42,7 @@ public class Employee extends Address{
 		this.salary=salary;
 	}
 	public void setEmployeeAddress(Address address) {
-		this.city=address.getCity();
-		this.state=address.getState();
+		this.address = address;
 	}
 	
 	public Address getEmployeeAddress() {
@@ -53,5 +53,7 @@ public class Employee extends Address{
 	public String toString() {
 		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + "]";
 	}
+
+	
 
 }

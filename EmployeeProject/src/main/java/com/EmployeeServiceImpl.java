@@ -13,6 +13,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 		add(new Employee(3,"Cosmo",17000.0,new Address("Bakersfield","California")));
 	}
 };
+
+
 //Stream<Employee> myStream;
 	//implements all methods for the interface class
 	//EmployeeService empSer= new EmployeeService();	
@@ -50,8 +52,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 			.findFirst().orElse(null);
 		select.setEmployeeName(e1.getEmployeeName());
 		select.setEmployeeSalary(e1.getEmployeeSalary());
-		select.setEmployeeAddress(e1.getEmployeeAddress());
-
+		select.setEmployeeAddress(e1.getEmployeeAddress() );
+//another way to do it with a for loop
 //		for(int i=0;i<list.size();i++) {
 //			if(list.get(i).getEmployeeNo()==e1.getEmployeeNo()) {
 //				list.get(i).setEmployeeName(e1.getEmployeeName());
