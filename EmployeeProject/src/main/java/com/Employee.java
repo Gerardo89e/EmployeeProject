@@ -7,7 +7,7 @@ public class Employee{
 	public double salary;
 	public Address address;
 	
-	Employee(int empNo, String empName, double salary, Address address) {
+	public Employee(int empNo, String empName, double salary, Address address) {
 		// TODO Auto-generated constructor stub
 		super();
 		//super(city, state);
@@ -48,12 +48,18 @@ public class Employee{
 	public Address getEmployeeAddress() {
 		return address;
 	}
-
+/*
 	@Override
 	public String toString() {
 		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + "]";
 	}
+*/
 
+	@Override
+	public String toString() {
+		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + ", address=" + address
+				+ "]";
+	}
 	
 
 }

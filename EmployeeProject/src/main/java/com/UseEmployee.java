@@ -1,5 +1,6 @@
 package com;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UseEmployee{
@@ -35,15 +36,19 @@ public class UseEmployee{
 						 break;
 						 
 					case 3://Find employee
+					try {
 						Scanner scanObject = new Scanner(System.in);
 						System.out.println("Please insert the Employee Number: "); 
 						 int EmployeeNum = scanObject.nextInt();
 						//System.out.println(solution.findByEmployeeNo(EmployeeNum)+" Employee Address ["+solution.findByEmployeeNo(EmployeeNum).getCity()+", "+solution.findByEmployeeNo(EmployeeNum).getState()+"]");
 					    //updated below output
 						 System.out.println(solution.findByEmployeeNo(EmployeeNum)+" "+solution.findByEmployeeNo(EmployeeNum).getEmployeeAddress());
-
+					}catch( NullPointerException e) {
+						System.out.println("Error arraylist index is out of bounds");
+					}
 						 break;
 					case 4://Update employee
+						try {
 						Scanner st = new Scanner(System.in);
 						System.out.println("Please insert the Employee Number: "); 
 						int EmpNum = st.nextInt();
@@ -62,11 +67,13 @@ public class UseEmployee{
 
 						//solution.updateEmployee(new Employee(1,"kia",150.0,new Address("Los","Cali")));
 						//function1(solution,EmpNum,EmpName,EmpSalary,EmpSalary,EmpCity,EmpState);
-						function1(solution,EmpNum,EmpName,EmpSalary,EmpCity,EmpState);
+						 passEmployeeInfoUpdate(solution,EmpNum,EmpName,EmpSalary,EmpCity,EmpState);
 						//solution.updateEmployee(solution.list.get(0).setEmployeeName("Bo"));
 					   // System.out.println(solution.findByEmployeeNo(1));
 					    //System.out.println(solution.list.get(0).getEmployeeAddress());
-					    
+						}catch(InputMismatchException  e) {
+				            System.out.println ("User Input the wrong vaule");
+						}
 					    
 						break;
 					case 5:
@@ -114,16 +121,16 @@ public static int optionSelected() {
 	 return menuSelection;
 }
 
-public static void function1(EmployeeServiceImpl solution,int empNo,String empName,double empSalary,String city,String state) {
+public static void passEmployeeInfoUpdate(EmployeeServiceImpl solution,int empNo,String empName,double empSalary,String city,String state) {
 	solution.updateEmployee(new Employee(empNo,empName,empSalary,new Address(city,state)));
 	//solution.updateEmployee(new Employee(empNo,"kia",150.0,new Address("Los","Cali")));
 
-	function2(solution);
+	displayEmployeeUpdate(solution,empNo);
 }
 
-public static void function2(EmployeeServiceImpl solution) {
+public static void displayEmployeeUpdate(EmployeeServiceImpl solution, int empNo) {
 	//System.out.println("Updated "+solution.findByEmployeeNo(1));
-	System.out.println("Updated "+solution.findByEmployeeNo(1)+" "+" Address [ "+solution.findByEmployeeNo(1).getEmployeeAddress());
+	System.out.println("Updated "+solution.findByEmployeeNo(empNo).getEmployeeAddress());
     //System.out.println(solution.findByEmployeeNo(1).getEmployeeAddress());
     //System.out.println("updated State "+solution.findByEmployeeNo(1).getState());
 	//System.out.println("updated City "+solution.findByEmployeeNo(1).getCity());

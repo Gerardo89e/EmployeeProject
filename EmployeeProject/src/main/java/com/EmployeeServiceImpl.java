@@ -1,6 +1,8 @@
 package com;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,23 +38,32 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public  Employee findByEmployeeNo(int empNo) {
 		// TODO Auto-generated method stub
 		//list.stream().filter(w ->w.getEmployeeNo() == empNo);
+	
 		ArrayList<Employee> fred=(ArrayList<Employee>)list.
 		stream().filter(w ->w.getEmployeeNo() == empNo).collect(Collectors.toList());
+	
 		if(fred.isEmpty()) {
 			return null;
 		}else {
 			return fred.get(0);
 		}
+	
+	
 	}
 
 	@Override
 	public void updateEmployee(Employee e1) {
 		// TODO Auto-geneated method stub
-		Employee select = list.stream().filter(var->var.getEmployeeNo() == e1.getEmployeeNo())
-			.findFirst().orElse(null);
-		select.setEmployeeName(e1.getEmployeeName());
-		select.setEmployeeSalary(e1.getEmployeeSalary());
-		select.setEmployeeAddress(e1.getEmployeeAddress() );
+		 //try {
+			 Employee select = list.stream().filter(var->var.getEmployeeNo() == e1.getEmployeeNo())
+						.findFirst().orElse(null);
+					select.setEmployeeName(e1.getEmployeeName());
+					select.setEmployeeSalary(e1.getEmployeeSalary());
+					select.setEmployeeAddress(e1.getEmployeeAddress() );
+	       // }
+	        //catch(NullPointerException  e) {
+	        //    System.out.println ("User Input the wrong vaule");
+	        //}
 //another way to do it with a for loop
 //		for(int i=0;i<list.size();i++) {
 //			if(list.get(i).getEmployeeNo()==e1.getEmployeeNo()) {
