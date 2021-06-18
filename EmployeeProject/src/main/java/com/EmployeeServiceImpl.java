@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EmployeeServiceImpl<T> implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService{
 	/*
 	public static Map<Integer, Employee> hm= new HashMap<Integer, Employee>(){
 		{
@@ -90,14 +90,6 @@ public class EmployeeServiceImpl<T> implements EmployeeService{
 	@Override
 	public void deleteEmployee(Employee e1) {
 		// TODO Auto-generated method stub
-		//ArrayList<Employee> newList = new ArrayList<Employee>();	
-		/*Iterator<Employee> itr=list.iterator();
-			while(itr.hasNext()) {
-				Employee t= itr.next();
-				if(e1.equals(list.contains(e1))){
-					list.remove(e1);
-				}
-			}*/
 			list.remove(e1);
 	}
 

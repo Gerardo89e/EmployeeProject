@@ -1,11 +1,11 @@
 package com;
 
-public class Employee<T> extends Address{
-
-	public int empNo;
-	public String empName;
-	public double salary;
-	public Address address;
+public class Employee{
+//removed the implement because Employee is a Address not true
+	private int empNo;
+	private String empName;
+	private double salary;
+	private Address address;
 	//static Employee obj= new Employee();
 	//default constructor
 	public Employee() {
