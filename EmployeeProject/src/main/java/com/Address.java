@@ -4,8 +4,10 @@ public class Address {
 	public String city;
 	public String state;
 	//Constructor
-	public Address(String city, String state){
+	public Address(){
 		super();
+	}
+	public Address(String city, String state){
 		this.city=city;
 		this.state=state;
 	}
@@ -25,8 +27,10 @@ public class Address {
 	public void setState(String state) {
 		this.state=state;
 	}
+
 	@Override
 	public String toString() {
-		return "Address [city=" + city + ", state=" + state + "]";
+		return "Address city= " + city + ", state= " + state;
 	}
+	
 }

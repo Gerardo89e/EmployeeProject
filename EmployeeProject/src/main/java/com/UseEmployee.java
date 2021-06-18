@@ -5,103 +5,129 @@ import java.util.Scanner;
 
 public class UseEmployee{
 	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int menuSelection=0;
+		Scanner sca = new Scanner(System.in);
 
 		EmployeeServiceImpl solution = new EmployeeServiceImpl();
 		
-	//System.out.println(solution.list.get(1));
-
 		while(menuSelection != 6) {
 			//menuDisplay();
 			menuSelection=optionSelected();
-
-				
-				switch(menuSelection) {
-					case 1:
-						 System.out.println("All Employee's listed:");
-						 solution.displayAllEmployee();
-						 break;
-					case 2://calculate Employee salary
-						Scanner sca = new Scanner(System.in);
-					    System.out.println("Please insert the Employee Number: "); 
-					    int EmployeeNum2 = sca.nextInt();
-						
-						Employee su= solution.list.stream()
-			                    .filter( emp -> emp.getEmployeeNo() == EmployeeNum2)
-			                    .findFirst()
-			                    .orElse(null);
-						 System.out.println("Employee Salary for "+solution.findByEmployeeNo(EmployeeNum2).empName+"for the year is:"+solution.calculateYearlySalary(su));
-						 break;
-						 
-					case 3://Find employee
-					try {
-						Scanner scanObject = new Scanner(System.in);
-						System.out.println("Please insert the Employee Number: "); 
-						 int EmployeeNum = scanObject.nextInt();
-						//System.out.println(solution.findByEmployeeNo(EmployeeNum)+" Employee Address ["+solution.findByEmployeeNo(EmployeeNum).getCity()+", "+solution.findByEmployeeNo(EmployeeNum).getState()+"]");
-					    //updated below output
-						 System.out.println(solution.findByEmployeeNo(EmployeeNum)+" "+solution.findByEmployeeNo(EmployeeNum).getEmployeeAddress());
-					}catch( NullPointerException e) {
-						System.out.println("Error arraylist index is out of bounds");
-					}
-						 break;
-					case 4://Update employee
-						try {
-						Scanner st = new Scanner(System.in);
-						System.out.println("Please insert the Employee Number: "); 
-						int EmpNum = st.nextInt();
-						st.nextLine();
-						System.out.println("Please insert the Employee Name: "); 
-						String EmpName = st.nextLine();
-						
-						System.out.println("Please insert the Employee Salary: "); 
-						double EmpSalary= st.nextDouble();
-						st.nextLine();
-						System.out.println("Please insert the Employee Address for State: "); 
-						String EmpState= st.nextLine();
-						st.nextLine();
-						System.out.println("Please insert the Employee Address for City: "); 
-						String EmpCity= st.nextLine();
-
-						//solution.updateEmployee(new Employee(1,"kia",150.0,new Address("Los","Cali")));
-						//function1(solution,EmpNum,EmpName,EmpSalary,EmpSalary,EmpCity,EmpState);
-						 passEmployeeInfoUpdate(solution,EmpNum,EmpName,EmpSalary,EmpCity,EmpState);
-						//solution.updateEmployee(solution.list.get(0).setEmployeeName("Bo"));
-					   // System.out.println(solution.findByEmployeeNo(1));
-					    //System.out.println(solution.list.get(0).getEmployeeAddress());
-						}catch(InputMismatchException  e) {
-				            System.out.println ("User Input the wrong vaule");
-						}
-					    
-						break;
-					case 5:
-						Scanner scan = new Scanner(System.in);
-						System.out.println("Please insert the Employee Number to delete: "); 
-						int EmployeeNum1 = scan.nextInt();
-						Employee suti = solution.list.stream()
-			                    .filter( emp -> emp.getEmployeeNo() == EmployeeNum1)
-			                    .findFirst()
-			                    .orElse(null);
-						//Employee suti=solution.list.get(EmployeeNum1-1);
-						solution.deleteEmployee(suti);
-						System.out.println("Employee List updated: ");
-						solution.displayAllEmployee();
-						break; 
-					case 6:
-						System.out.println("Program has ended");
-						break;
-					default:
-						System.out.println("Error"+menuSelection 
-								+"is not an option");
-				}	
+			switchQuestions(menuSelection, solution,sca);
 		}
 
 	}
+public static void switchQuestions(int menuSelection,EmployeeServiceImpl solution,Scanner sca) {
+	switch(menuSelection) {
+	case 1:
+		 choice1(solution);
+		 break;
+	case 2://calculate Employee salary
+		 choice2(solution,sca);
+		 break;
+		 
+	case 3://Find employee
+		 choice3(solution,sca);
+		 break;
+	case 4://Update employee
+		choice4(solution,sca);
+		break;
+	case 5:
+		choice5(solution,sca);
+		break; 
+	case 6:
+		System.out.println("Program has ended");
+		break;
+	default:
+		System.out.println("Error"+menuSelection 
+				+"is not an option");
+}	
+}
+public static void choice1(EmployeeServiceImpl solution) {
+		System.out.println("All Employee's listed:");
+		 solution.displayAllEmployee();
+}
 
+public static void choice2(EmployeeServiceImpl solution,Scanner sca) {
+    System.out.println("Please insert the Employee Number: "); 
+    int EmployeeNum2 = sca.nextInt();
 	
+	Employee su= solution.list.stream()
+            .filter( emp -> emp.getEmployeeNo() == EmployeeNum2)
+            .findFirst()
+            .orElse(null);
+	 System.out.println("Employee Salary for "+solution.findByEmployeeNo(EmployeeNum2).empName+"for the year is:"+solution.calculateYearlySalary(su));
+}
 
+public static void choice3(EmployeeServiceImpl solution,Scanner sca) {
+	//Scanner scanObject = new Scanner(System.in);
+	try {
+	System.out.println("Please insert the Employee Number: "); 
+	 int EmployeeNum = sca.nextInt();
+	
+	System.out.println(solution.findByEmployeeNo(EmployeeNum).toString());
+	/*
+	 System.out.println(solution.findByEmployeeNo(EmployeeNum)+" "
+			+ "Employee Address ["+solution.findByEmployeeNo(EmployeeNum).getCity()+
+			", "+solution.findByEmployeeNo(EmployeeNum).getState()+"]");
+			*/
+	}catch(NullPointerException e) {
+		System.out.println("Error arraylist index is out of bounds");
+	}
+}
+public static void choice4(EmployeeServiceImpl solution,Scanner sca) {
+	try {
+	System.out.println("Please insert the Employee Number: "); 
+	int EmpNum = sca.nextInt();
+	sca.nextLine();
+	System.out.println("Please insert the Employee Name: "); 
+	String EmpName = sca.nextLine();
+	
+	System.out.println("Please insert the Employee Salary: "); 
+	double EmpSalary= sca.nextDouble();
+	sca.nextLine();
+	System.out.println("Please insert the Employee Address for State: "); 
+	String EmpState= sca.nextLine();
+	sca.nextLine();
+	System.out.println("Please insert the Employee Address for City: "); 
+	String EmpCity= sca.nextLine();
+	
+	solution.updateEmployee(new Employee(EmpNum,EmpName,EmpSalary,new Address(EmpCity,EmpState)));
+	System.out.println(solution.findByEmployeeNo(EmpNum).toString());
+
+	//System.out.println("Updated "+solution.toString());
+	/*
+	System.out.println("Updated "+solution.findByEmployeeNo(1)+" "
+	+" Address [ "+solution.findByEmployeeNo(1).getState()+"
+	+",  "+solution.findByEmployeeNo(1).getCity()+"]");
+	*/
+	}catch(InputMismatchException  e) {
+        System.out.println ("User Input the wrong vaule");
+	}
+	//solution.updateEmployee(new Employee(1,"kia",150.0,new Address("Los","Cali")));
+	//function1(solution,EmpNum,EmpName,EmpSalary,EmpSalary,EmpCity,EmpState);
+	//function1(solution,EmpNum,EmpName,EmpSalary,EmpCity,EmpState);
+	//solution.updateEmployee(solution.list.get(0).setEmployeeName("Bo"));
+   // System.out.println(solution.findByEmployeeNo(1));
+    //System.out.println(solution.list.get(0).getEmployeeAddress());
+    
+}
+public static void choice5(EmployeeServiceImpl solution,Scanner sca) {
+	//Scanner scan = new Scanner(System.in);
+	System.out.println("Please insert the Employee Number to delete: "); 
+	int EmployeeNum1 = sca.nextInt();
+	Employee suti = solution.list.stream()
+            .filter( emp -> emp.getEmployeeNo() == EmployeeNum1)
+            .findFirst()
+            .orElse(null);
+	//Employee suti=solution.list.get(EmployeeNum1-1);
+	solution.deleteEmployee(suti);
+	System.out.println("Employee List updated: ");
+	solution.displayAllEmployee();
+}
 public static void menuDisplay() {
 		System.out.println("Please select an option:\n");
 		System.out.println("1. List all employee");
@@ -119,21 +145,6 @@ public static int optionSelected() {
 	 System.out.println("Insert option: ");
 	 int menuSelection = scanObj.nextInt();
 	 return menuSelection;
-}
-
-public static void passEmployeeInfoUpdate(EmployeeServiceImpl solution,int empNo,String empName,double empSalary,String city,String state) {
-	solution.updateEmployee(new Employee(empNo,empName,empSalary,new Address(city,state)));
-	//solution.updateEmployee(new Employee(empNo,"kia",150.0,new Address("Los","Cali")));
-
-	displayEmployeeUpdate(solution,empNo);
-}
-
-public static void displayEmployeeUpdate(EmployeeServiceImpl solution, int empNo) {
-	//System.out.println("Updated "+solution.findByEmployeeNo(1));
-	System.out.println("Updated "+solution.findByEmployeeNo(empNo).getEmployeeAddress());
-    //System.out.println(solution.findByEmployeeNo(1).getEmployeeAddress());
-    //System.out.println("updated State "+solution.findByEmployeeNo(1).getState());
-	//System.out.println("updated City "+solution.findByEmployeeNo(1).getCity());
 }
 
 }

@@ -1,17 +1,22 @@
 package com;
 
-public class Employee{
+public class Employee extends Address{
 
 	public int empNo;
 	public String empName;
 	public double salary;
 	public Address address;
-	
-	public Employee(int empNo, String empName, double salary, Address address) {
-		// TODO Auto-generated constructor stub
+	//static Employee obj= new Employee();
+	//default constructor
+	public Employee() {
 		super();
+	}
+	
+	 public Employee(int empNo, String empName, double salary, Address address) {
+		// TODO Auto-generated constructor stub
+		super(address.getCity(), address.getState());
 		//super(city, state);
-		this.address = address;
+		this.address=address;
 		this.empNo=empNo;
 		this.empName=empName;
 		this.salary=salary;
@@ -42,24 +47,18 @@ public class Employee{
 		this.salary=salary;
 	}
 	public void setEmployeeAddress(Address address) {
-		this.address = address;
+		this.city=address.getCity();
+		this.state=address.getState();
 	}
 	
 	public Address getEmployeeAddress() {
 		return address;
 	}
-/*
-	@Override
-	public String toString() {
-		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + "]";
-	}
-*/
 
 	@Override
 	public String toString() {
-		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + ", address=" + address
+		return "Employee [empNo=" + empNo + ", empName=" + empName + ", salary=" + salary + " " + address
 				+ "]";
 	}
-	
 
 }
