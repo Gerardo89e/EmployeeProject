@@ -19,7 +19,7 @@ public class UseEmployee{
 			switchQuestions(menuSelection, solution,sca);
 		}
 
-	}
+	}//Include a try catch for one more or more for unexpected user inpput
 public static void switchQuestions(int menuSelection,EmployeeServiceImpl solution,Scanner sca) {
 	switch(menuSelection) {
 	case 1:
@@ -52,7 +52,8 @@ public static void choice1(EmployeeServiceImpl solution) {
 }
 
 public static void choice2(EmployeeServiceImpl solution,Scanner sca) {
-    System.out.println("Please insert the Employee Number: "); 
+    try {
+	System.out.println("Please insert the Employee Number: "); 
     int EmployeeNum2 = sca.nextInt();
 	
 	Employee su= solution.list.stream()
@@ -60,7 +61,10 @@ public static void choice2(EmployeeServiceImpl solution,Scanner sca) {
             .findFirst()
             .orElse(null);
 	 System.out.println("Employee Salary for "+solution.findByEmployeeNo(EmployeeNum2).empName+"for the year is:"+solution.calculateYearlySalary(su));
-}
+    }catch(Exception e) {
+    	System.out.println("not the employee");
+    }
+  }
 
 public static void choice3(EmployeeServiceImpl solution,Scanner sca) {
 	//Scanner scanObject = new Scanner(System.in);
@@ -104,8 +108,11 @@ public static void choice4(EmployeeServiceImpl solution,Scanner sca) {
 	+" Address [ "+solution.findByEmployeeNo(1).getState()+"
 	+",  "+solution.findByEmployeeNo(1).getCity()+"]");
 	*/
-	}catch(InputMismatchException  e) {
+	}catch(InputMismatchException e) {
         System.out.println ("User Input the wrong vaule");
+        sca.next();
+	}catch (NumberFormatException e1) {
+        System.out.println("Invalid input! You have to enter a letter not a number");
 	}
 	//solution.updateEmployee(new Employee(1,"kia",150.0,new Address("Los","Cali")));
 	//function1(solution,EmpNum,EmpName,EmpSalary,EmpSalary,EmpCity,EmpState);
@@ -117,6 +124,7 @@ public static void choice4(EmployeeServiceImpl solution,Scanner sca) {
 }
 public static void choice5(EmployeeServiceImpl solution,Scanner sca) {
 	//Scanner scan = new Scanner(System.in);
+	try {
 	System.out.println("Please insert the Employee Number to delete: "); 
 	int EmployeeNum1 = sca.nextInt();
 	Employee suti = solution.list.stream()
@@ -126,7 +134,11 @@ public static void choice5(EmployeeServiceImpl solution,Scanner sca) {
 	//Employee suti=solution.list.get(EmployeeNum1-1);
 	solution.deleteEmployee(suti);
 	System.out.println("Employee List updated: ");
-	solution.displayAllEmployee();
+	//solution.displayAllEmployee();
+	}catch(ArrayIndexOutOfBoundsException e) {
+		System.out.println("Error arraylist index is out of bounds");
+		
+	}
 }
 public static void menuDisplay() {
 		System.out.println("Please select an option:\n");

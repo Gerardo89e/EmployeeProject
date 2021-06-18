@@ -8,6 +8,7 @@ public class Address {
 		super();
 	}
 	public Address(String city, String state){
+		super();
 		this.city=city;
 		this.state=state;
 	}

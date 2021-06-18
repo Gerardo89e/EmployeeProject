@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl<T> implements EmployeeService{
 	/*
 	public static Map<Integer, Employee> hm= new HashMap<Integer, Employee>(){
 		{
